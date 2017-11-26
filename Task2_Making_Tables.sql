@@ -4,14 +4,14 @@ use pets3309;
 create table stores (
 storeID int not null auto_increment, 
 phoneNumber varchar(15) not null, 
-email varchar(40) not null,
+email varchar(60) not null,
 primary key(storeID));
 
 create table employee (
 EID int not null auto_increment, 
 Ename varchar(50) not null, 
 phoneNumber varchar(15) not null, 
-email varchar(40) not null, 
+email varchar(60) not null, 
 storeID int not null,
 primary key(EID),
 foreign key(storeID) references stores(storeID));
@@ -20,7 +20,7 @@ create table customer (
 memberID int not null auto_increment, 
 points int not null, 
 phoneNumber varchar(15) not null, 
-email varchar(40) not null,
+email varchar(60) not null,
 primary key(memberID));
 
 create table Stransaction (
@@ -31,14 +31,6 @@ Tdate datetime not null,
 primary key(TID),
 foreign key(memberID) references customer(memberID),
 foreign key(storeID) references stores(storeID));
-
-create table transactionInst (
-InstID int not null auto_increment, 
-TID int, 
-PetID int, 
-ItemID int,
-primary key(InstID),
-foreign key(TID) references Stransaction(TID));
 
 create table items (
 ItemID int not null, 
@@ -69,4 +61,13 @@ primary key(PetID),
 foreign key(storeID) references stores(storeID),
 foreign key(className) references animal(className));
 
+create table transactionInst (
+InstID int not null auto_increment, 
+TID int not null, 
+PetID int not null, 
+ItemID int not null,
+primary key(InstID),
+foreign key(TID) references Stransaction(TID),
+foreign key(PetID) references pet(PetID),
+foreign key(ItemID) references items(ItemID));
 
