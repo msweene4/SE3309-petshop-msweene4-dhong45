@@ -6,6 +6,7 @@ where className is not null;
 
 select*
 from customer
+where mod(points,2)=0
 order by points;
 
 select*
